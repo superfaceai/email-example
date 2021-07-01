@@ -1,0 +1,30 @@
+"""
+VCS User Repositories
+Retrieve the version control system repositories of specified user.
+"""
+name = "vcs/user-repos"
+version = "1.0.1"
+
+"""
+Get User Repositories
+Get repositories of the specified user.
+"""
+usecase UserRepos {
+  input {
+    "
+    User name 
+    User identifier for whom to list repositories. Some providers use authenticated user instead
+    "
+    user string
+  }
+
+  result {
+    repos [{
+      "Name of the repository"
+      name string
+
+      "Description of the repository"
+      description string
+    }]
+  }
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello Superface!</title>
+    <link rel="stylesheet" href="/style.css" />   
+  </head>
+  <body>
+    <h1>
+      Hello Superface!
+    </h1>
+    <p>
+      Example application showcasing Superface <a href="https://github.com/superfaceai/one-sdk-js">One SDK</a>.
+    </p>
+    
+    <form action="/" method="post" id="main-form">
+      <div class="form-group">
+        <label for="lname">Your email</label><br>
+        <input type="text" id="email" name="email" value="" placeholder="john@appleseed.com">
+      </div>
+      
+      <div class="form-group" id="options">
+        <input type="radio" id="classic" name="type" value="classic" onchange="displayForm(this.value)">
+        <label for="classic">Classic</label>
+        
+        <input type="radio" id="user-repos" name="type" value="user-repos" onchange="displayForm(this.value)">
+        <label for="user-repos">User repos</label>
+        
+        <input type="radio" id="address" name="type" value="address" onchange="displayForm(this.value)">
+        <label for="address">Address</label>
+      </div>
+      
+      <fieldset class="form-group" id="classic-form">
+        <label for="subject">Subject</label><br>
+        <input type="text" id="subject" name="subject" placeholder="superfaceai"><br>
+        
+        <label for="text">Text</label><br>
+        <textarea id="text" name="text" cols="40" rows="5" placeholder="Say something"></textarea>
+      </fieldset>
+      
+      <fieldset class="form-group" id="user-repos-form">
+        <label for="user">GitHub, GitLab or Bitbucket username</label><br>
+        <input type="text" id="user" name="user" value="superfaceai"><br>
+        
+        <label for="service">Service</label><br>
+        <select name = "service" id="service">
+          <option value = "github" selected>GitHub</option>
+          <option value = "gitlab">GitLab</option>
+          <option value = "bitbucket">Bitbucket</option>
+        </select>
+      </fieldset>
+        
+      <fieldset class="form-group" id="address-form">
+        <label for="latitude">Latitude</label><br>
+        <input type="text" id="latitude" name="latitude" value="50.0874654"><br>
+        
+        <label for="longitude">Longitude</label><br>
+        <input type="text" id="longitude" name="longitude" value="14.4212535"><br>
+        
+        <label for="service">Service</label><br>
+        <select name = "service" id="service">
+          <option value = "nominatim" selected>nominatim</option>
+          <option value = "google-apis">google-apis</option>
+          <option value = "opencage">opencage</option>
+        </select>
+      </fieldset>
+
+      <input type="submit" value="Submit" id="main-submit">
+    </form>
+
+    <section id="info">
+      {{#if errorMessage}}
+        <div class="response response-error">
+          <h4>Form Error:</h4>
+          <p class="response-message" >
+            {{ errorMessage }}
+          </p>
+        </div>
+      {{/if}}
+
+      {{#if message}}
+        {{#if log}}
+          {{#if success}}
+            <h3>
+              {{#if success}} 
+                &#127881;    
+              {{else}}
+                &#128680;
+              {{/if}}
+              {{ message }}
+            </h3>
+          {{/if}}
+        {{/if}}
+      {{/if}}
+
+      {{#if failoverInfo}}
+        <h3>&#128227; Failover happened &#128227;</h3>
+        <div class="failover"> 
+          <h4>Used providers in use case</h4>
+          {{#each failoverInfo}}
+            <div class="failover-chain">
+              <h4>{{@key}}:</h4>
+              <p class="failover-provider">
+              {{#each this as |provider|}}
+                  {{ provider }}
+              {{/each}}
+              </p>
+            </div>
+          {{/each}}
+        </div>
+      {{/if}}
+    </section>
+
+    <h2>
+      More Examples
+    </h2>
+    <p>
+      Check out <a href="https://glitch.com/edit/#!/wiggly-lumbar-paprika?path=superface.js"><code>superface.js</code></a> and <a href="https://glitch.com/edit/#!/wiggly-lumbar-paprika?path=README.md">README</a>.
+    </p>
+
+    <script>
+      const mainForm = document.getElementById("main-form")
+      const classicForm = document.getElementById("classic-form");
+      const userReposForm = document.getElementById("user-repos-form");
+      const addressForm = document.getElementById("address-form");
+      const mainSubmitButton = document.getElementById("main-submit")
+
+      function displayForm(type) {
+        const selectedForm = document.getElementById(type + "-form");
+        
+        selectedForm.style.display = "block";
+        selectedForm.removeAttribute("disabled");
+
+        if (type === "classic"){
+          userReposForm.setAttribute("disabled", "disabled");
+          addressForm.setAttribute("disabled", "disabled");
+        } else if (type === "user-repos"){
+          classicForm.setAttribute("disabled", "disabled");
+          addressForm.setAttribute("disabled", "disabled");
+        } else if (type === "address"){
+          classicForm.setAttribute("disabled", "disabled");
+          userReposForm.setAttribute("disabled", "disabled");
+        }
+      }
+
+      function throttle(callback, limit) {
+        let waiting = false;
+
+        return function(...args) {
+          if (!waiting) {
+            callback.apply(this, args);
+            waiting = true;
+
+            setTimeout(() => {
+              waiting = false; 
+            }, limit);
+          }
+        };
+      }
+      
+      mainForm.addEventListener(
+        'submit', 
+        throttle(
+          event => {
+            mainSubmitButton.setAttribute("disabled", "disabled");
+          }, 10000)
+      )
+    </script>
+  </body>
+</html>
+

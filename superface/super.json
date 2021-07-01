@@ -1,0 +1,146 @@
+{
+  "profiles": {
+    "communication/send-email": {
+      "version": "1.0.1",
+      "priority": ["sendgrid", "mailgun"],
+      "defaults": {
+        "SendEmail": {
+          "providerFailover": true
+        }
+      },
+      "providers": {
+        "sendgrid": {
+          "defaults": {
+            "SendEmail": {
+              "retryPolicy": "none",
+              "input": {
+                "from": "hello@superface.org"
+              }
+            }
+          }
+        },
+        "mailgun": {
+          "defaults": {
+            "SendEmail": {
+              "retryPolicy": {
+                "kind": "circuit-breaker",
+                "maxContiguousRetries": 3,
+                "requestTimeout": 2000,
+                "backoff": "exponential"
+              },
+              "input": {
+                "from": "hello@superface.org",
+                "domain": "$MAILGUN_COMMUNICATION_DOMAIN"
+              }
+            }
+          }
+        }
+      }
+    },
+    "vcs/user-repos": {
+      "version": "1.0.1",
+      "providers": {
+        "github": {
+          "defaults": {
+            "UserRepos": {
+              "retryPolicy": "circuit-breaker"
+            }
+          }
+        },
+        "gitlab": {
+          "defaults": {
+            "UserRepos": {
+              "retryPolicy": "circuit-breaker"
+            }
+          }
+        },
+        "bitbucket": {}
+      }
+    },
+    "address/geocoding": {
+      "version": "3.0.1",
+      "providers": {
+        "nominatim": {
+          "file": "./maps/geocode.nominatim.suma",
+          "defaults": {
+            "ReverseGeocode": {
+              "retryPolicy": {
+                "kind": "circuit-breaker",
+                "maxContiguousRetries": 5,
+                "requestTimeout": 5000
+              }
+            }
+          }
+        },
+        "google-apis": {
+          "defaults": {
+            "ReverseGeocode": {
+              "retryPolicy": "circuit-breaker"
+            }
+          }
+        },
+        "opencage": {}
+      }
+    }
+  },
+  "providers": {
+    "mock": {
+      "security": []
+    },
+    "mailchimp": {
+      "security": []
+    },
+    "mailgun": {
+      "security": [
+        {
+          "id": "basic",
+          "username": "$MAILGUN_USERNAME",
+          "password": "$MAILGUN_PASSWORD"
+        }
+      ]
+    },
+    "sendgrid": {
+      "security": [
+        {
+          "id": "bearer_token",
+          "token": "$SENDGRID_TOKEN"
+        }
+      ]
+    },
+    "github": {
+      "security": []
+    },
+    "gitlab": {
+      "security": []
+    },
+    "bitbucket": {
+      "security": [
+        {
+          "id": "basic",
+          "username": "$BITBUCKET_USERNAME",
+          "password": "$BITBUCKET_PASSWORD"
+        }
+      ]
+    },
+    "nominatim": {
+      "file": "./providers/nominatim.json",
+      "security": []
+    },
+    "google-apis": {
+      "security": [
+        {
+          "id": "apikey",
+          "apikey": "$GOOGLE_MAPS_API_KEY"
+        }
+      ]
+    },
+    "opencage": {
+      "security": [
+        {
+          "id": "apikey",
+          "apikey": "$OPENCAGE_API_KEY"
+        }
+      ]
+    }
+  }
+}

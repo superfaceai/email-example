@@ -1,0 +1,211 @@
+{
+  "kind": "ProfileDocument",
+  "header": {
+    "kind": "ProfileHeader",
+    "scope": "vcs",
+    "name": "user-repos",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 1
+    },
+    "location": {
+      "line": 1,
+      "column": 1
+    },
+    "span": {
+      "start": 0,
+      "end": 139
+    },
+    "title": "VCS User Repositories",
+    "description": "Retrieve the version control system repositories of specified user."
+  },
+  "definitions": [
+    {
+      "kind": "UseCaseDefinition",
+      "useCaseName": "UserRepos",
+      "input": {
+        "kind": "UseCaseSlotDefinition",
+        "type": {
+          "kind": "ObjectDefinition",
+          "fields": [
+            {
+              "kind": "FieldDefinition",
+              "fieldName": "user",
+              "required": false,
+              "type": {
+                "kind": "PrimitiveTypeName",
+                "name": "string",
+                "span": {
+                  "start": 374,
+                  "end": 380
+                },
+                "location": {
+                  "line": 18,
+                  "column": 10
+                }
+              },
+              "location": {
+                "line": 14,
+                "column": 5
+              },
+              "span": {
+                "start": 245,
+                "end": 380
+              },
+              "title": "User name",
+              "description": "User identifier for whom to list repositories. Some providers use authenticated user instead"
+            }
+          ],
+          "location": {
+            "line": 13,
+            "column": 9
+          },
+          "span": {
+            "start": 239,
+            "end": 384
+          }
+        },
+        "location": {
+          "line": 13,
+          "column": 3
+        },
+        "span": {
+          "start": 233,
+          "end": 384
+        }
+      },
+      "result": {
+        "kind": "UseCaseSlotDefinition",
+        "type": {
+          "kind": "ObjectDefinition",
+          "fields": [
+            {
+              "kind": "FieldDefinition",
+              "fieldName": "repos",
+              "required": false,
+              "type": {
+                "kind": "ListDefinition",
+                "elementType": {
+                  "kind": "ObjectDefinition",
+                  "fields": [
+                    {
+                      "kind": "FieldDefinition",
+                      "fieldName": "name",
+                      "required": false,
+                      "type": {
+                        "kind": "PrimitiveTypeName",
+                        "name": "string",
+                        "span": {
+                          "start": 452,
+                          "end": 458
+                        },
+                        "location": {
+                          "line": 24,
+                          "column": 12
+                        }
+                      },
+                      "location": {
+                        "line": 23,
+                        "column": 7
+                      },
+                      "span": {
+                        "start": 416,
+                        "end": 458
+                      },
+                      "title": "Name of the repository"
+                    },
+                    {
+                      "kind": "FieldDefinition",
+                      "fieldName": "description",
+                      "required": false,
+                      "type": {
+                        "kind": "PrimitiveTypeName",
+                        "name": "string",
+                        "span": {
+                          "start": 516,
+                          "end": 522
+                        },
+                        "location": {
+                          "line": 27,
+                          "column": 19
+                        }
+                      },
+                      "location": {
+                        "line": 26,
+                        "column": 7
+                      },
+                      "span": {
+                        "start": 466,
+                        "end": 522
+                      },
+                      "title": "Description of the repository"
+                    }
+                  ],
+                  "location": {
+                    "line": 22,
+                    "column": 12
+                  },
+                  "span": {
+                    "start": 408,
+                    "end": 528
+                  }
+                },
+                "location": {
+                  "line": 22,
+                  "column": 11
+                },
+                "span": {
+                  "start": 407,
+                  "end": 529
+                }
+              },
+              "location": {
+                "line": 22,
+                "column": 5
+              },
+              "span": {
+                "start": 401,
+                "end": 529
+              }
+            }
+          ],
+          "location": {
+            "line": 21,
+            "column": 10
+          },
+          "span": {
+            "start": 395,
+            "end": 533
+          }
+        },
+        "location": {
+          "line": 21,
+          "column": 3
+        },
+        "span": {
+          "start": 388,
+          "end": 533
+        }
+      },
+      "location": {
+        "line": 8,
+        "column": 1
+      },
+      "span": {
+        "start": 141,
+        "end": 535
+      },
+      "title": "Get User Repositories",
+      "description": "Get repositories of the specified user."
+    }
+  ],
+  "location": {
+    "line": 1,
+    "column": 1
+  },
+  "span": {
+    "start": 0,
+    "end": 535
+  }
+}
