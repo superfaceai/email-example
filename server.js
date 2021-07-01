@@ -162,7 +162,7 @@ async function main() {
     const refArray = commitPushed ? request.body.ref.split("/") : [];
     const branch = refArray[refArray.length - 1];
 
-    const pushedToMaster = commitPushed && branch === "master";
+    const pushedToMaster = commitPushed && branch === "main";
     const pullRequestMerged =
       request.headers["x-github-event"] === "pullrequest" &&
       request.body.action === "closed" &&
