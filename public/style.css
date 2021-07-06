@@ -254,3 +254,14 @@ fieldset[disabled='disabled'] {
 .response-value > .response-message {
   color: rgb(56, 61, 56);
 }
+
+.log {
+  background-color: hsl(230, 32%, 69%);
+  padding: 10px;
+}
+
+.log pre {
+  font-size: 0.9em;
+  width: 100%;
+  white-space: pre-wrap;
+}
