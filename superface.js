@@ -61,14 +61,14 @@ async function fetchUserRepos(user, service) {
         message = 'Failed to get user repositories'
         log = result.error
         repos = []
-        console.log(message)
     } else {
         message = 'User repositories recieved'
         repos = result.value.repos
         log = result.value
         success = true
-        console.log(message)
     }
+
+    console.log(message)
 
     return {
         success,
