@@ -16,15 +16,28 @@ const client = getClient();
 let failoverInfo = {};
 
 /**
+ */
+client.on(
+  "pre-perform",
+  { priority: 5, filter: { profile: "communication/send-email" } },
+  (context, args) => {
+    console.log(`PRE-PERFORM: current provider: ${context.provider}`);
+
+    return { kind: "continue" };
+  }
+);
+
+/**
  * Triggers fake failover on email provider sendgrid
  * and adds context information to local failover info object
  */
 client.on(
   "pre-fetch",
-  { priority: 10, filter: { profile: "communication/send-email" } },
+  { priority: 6, filter: { profile: "communication/send-email" } },
   (context, args) => {
+    console.log(`PRE-FETCH: current provider: ${context.provider}`);
     addFailoverInfo(context.usecase, context.provider);
-
+    
     if (context.provider === "sendgrid") {
       console.log(
         "Modifying original base url of provider sendgrid to trigger failover"
@@ -40,12 +53,25 @@ client.on(
   }
 );
 
+client.on("post-perform", { priority: 7 }, async (context, args, result) => {
+  console.log(`POST-PERFORM: current provider: ${context.provider}`, args);
+
+  return { kind: "continue" };
+});
+
 function getFailoverInfo(usecase) {
   if (!usecase) {
     return failoverInfo;
   }
 
-  return failoverInfo[usecase];
+  if (!failoverInfo[usecase]) {
+    return [];
+  }
+
+  return {
+    happened: failoverInfo[usecase].length > 1,
+    info: failoverInfo[usecase]
+  };
 }
 
 function addFailoverInfo(usecase, provider) {
