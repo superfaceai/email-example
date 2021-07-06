@@ -12,7 +12,11 @@
         "sendgrid": {
           "defaults": {
             "SendEmail": {
-              "retryPolicy": "none",
+              "retryPolicy": {
+                "kind": "circuit-breaker",
+                "maxContiguousRetries": 1,
+                "requestTimeout": 1500
+              },
               "input": {
                 "from": "hello@superface.org"
               }
@@ -40,20 +44,8 @@
     "vcs/user-repos": {
       "version": "1.0.1",
       "providers": {
-        "github": {
-          "defaults": {
-            "UserRepos": {
-              "retryPolicy": "circuit-breaker"
-            }
-          }
-        },
-        "gitlab": {
-          "defaults": {
-            "UserRepos": {
-              "retryPolicy": "circuit-breaker"
-            }
-          }
-        },
+        "github": {},
+        "gitlab": {},
         "bitbucket": {}
       }
     },
@@ -66,8 +58,8 @@
             "ReverseGeocode": {
               "retryPolicy": {
                 "kind": "circuit-breaker",
-                "maxContiguousRetries": 5,
-                "requestTimeout": 5000
+                "maxContiguousRetries": 2,
+                "requestTimeout": 2000
               }
             }
           }
