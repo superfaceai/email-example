@@ -80,34 +80,35 @@
       {{/if}}
 
       {{#if message}}
-        {{#if log}}
-          {{#if success}}
-            <h3>
-              {{#if success}} 
-                &#127881;    
-              {{else}}
-                &#128680;
-              {{/if}}
-              {{ message }}
-            </h3>
+        <h3>
+          {{#if success}} 
+            &#127881;    
+          {{else}}
+            &#128680;
           {{/if}}
-        {{/if}}
+          {{ message }}
+        </h3>
       {{/if}}
 
       {{#if failoverInfo}}
-        <h3>&#128227; Failover happened &#128227;</h3>
-        <div class="failover"> 
-          <h4>Used providers in use case</h4>
-          {{#each failoverInfo}}
-            <div class="failover-chain">
-              <h4>{{@key}}:</h4>
-              <p class="failover-provider">
-              {{#each this as |provider|}}
+        {{#if failoverInfo.happened}}
+          <h3>&#128227; Failover happened &#128227;</h3>
+          <div class="failover"> 
+            <h4>Used providers in use case</h4>
+            {{#each failoverInfo.info as |provider| }}
+              <div class="failover-chain">
+                <p class="failover-provider">
                   {{ provider }}
-              {{/each}}
-              </p>
-            </div>
-          {{/each}}
+                </p>
+              </div>
+            {{/each}}
+          </div>
+        {{/if}}
+      {{/if}}  
+
+      {{#if resultLog}}
+        <div class="log">
+            <pre>{{ resultLog }}</pre>
         </div>
       {{/if}}
     </section>
@@ -169,4 +170,3 @@
     </script>
   </body>
 </html>
-
