@@ -44,8 +44,20 @@
     "vcs/user-repos": {
       "version": "1.0.1",
       "providers": {
-        "github": {},
-        "gitlab": {},
+        "github": {
+          "defaults": {
+            "UserRepos": {
+              "retryPolicy": "circuit-breaker"
+            }
+          }
+        },
+        "gitlab": {
+          "defaults": {
+            "UserRepos": {
+              "retryPolicy": "circuit-breaker"
+            }
+          }
+        },
         "bitbucket": {}
       }
     },
@@ -58,8 +70,8 @@
             "ReverseGeocode": {
               "retryPolicy": {
                 "kind": "circuit-breaker",
-                "maxContiguousRetries": 2,
-                "requestTimeout": 2000
+                "maxContiguousRetries": 5,
+                "requestTimeout": 5000
               }
             }
           }
