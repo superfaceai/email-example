@@ -10,9 +10,9 @@
     <h1>
       Hello Superface!
     </h1>
-    <p>
+    <h3>
       Example application showcasing Superface <a href="https://github.com/superfaceai/one-sdk-js">One SDK</a>.
-    </p>
+    </h3>
     
     <form action="/" method="post" id="main-form">
       <div class="form-group">
@@ -21,7 +21,7 @@
       </div>
       
       <div class="form-group" id="options">
-        <input type="radio" id="classic" name="type" value="classic" onchange="displayForm(this.value)">
+        <input type="radio" id="classic" name="type" value="classic" onchange="displayForm(this.value)" checked>
         <label for="classic">Classic</label>
         
         <input type="radio" id="user-repos" name="type" value="user-repos" onchange="displayForm(this.value)">
@@ -67,59 +67,52 @@
       </fieldset>
 
       <input type="submit" value="Submit" id="main-submit">
-    </form>
-
-    <section id="info">
-      {{#if errorMessage}}
-        <div class="response response-error">
-          <h4>Form Error:</h4>
-          <p class="response-message" >
-            {{ errorMessage }}
-          </p>
-        </div>
-      {{/if}}
-
-      {{#if message}}
-        <h3>
-          {{#if success}} 
-            &#127881;    
-          {{else}}
-            &#128680;
-          {{/if}}
-          {{ message }}
-        </h3>
-      {{/if}}
-
-      {{#if failoverInfo}}
-        {{#if failoverInfo.happened}}
-          <h3>&#128227; Failover happened &#128227;</h3>
-          <div class="failover"> 
-            <h4>Used providers in use case</h4>
-            {{#each failoverInfo.info as |provider| }}
-              <div class="failover-chain">
-                <p class="failover-provider">
-                  {{ provider }}
-                </p>
-              </div>
-            {{/each}}
+    
+      <section id="info">
+        {{#if errorMessage}}
+          <div class="response response-error">
+            <h4>Form Error:</h4>
+            <p class="response-message" >
+              {{ errorMessage }}
+            </p>
           </div>
         {{/if}}
-      {{/if}}  
 
-      {{#if resultLog}}
-        <div class="log">
-            <pre>{{ resultLog }}</pre>
-        </div>
-      {{/if}}
-    </section>
+        {{#if message}}
+          <h3>
+            {{#if success}} 
+              &#127881;    
+            {{else}}
+              &#128680;
+            {{/if}}
+            {{ message }}
+          </h3>
+        {{/if}}
 
-    <h2>
-      More Examples
-    </h2>
-    <p>
-      Check out <a href="https://glitch.com/edit/#!/wiggly-lumbar-paprika?path=superface.js"><code>superface.js</code></a> and <a href="https://glitch.com/edit/#!/wiggly-lumbar-paprika?path=README.md">README</a>.
-    </p>
+        {{#if failoverInfo}}
+          {{#if failoverInfo.happened}}
+            <h3>&#128227; Failover happened &#128227;</h3>
+            <div class="failover"> 
+              <h4>Used providers in use case</h4>
+              {{#each failoverInfo.info as |provider| }}
+                <div class="failover-chain">
+                  <p class="failover-provider">
+                    {{ provider }}
+                  </p>
+                </div>
+              {{/each}}
+            </div>
+          {{/if}}
+        {{/if}}  
 
+        {{#if resultLog}}
+          <div class="log">
+              <pre>{{ resultLog }}</pre>
+          </div>
+        {{/if}}
+      </section>
+    </form>
+    
     <script>
       const mainForm = document.getElementById("main-form")
       const classicForm = document.getElementById("classic-form");
@@ -170,3 +163,4 @@
     </script>
   </body>
 </html>
+
