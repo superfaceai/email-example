@@ -59,7 +59,7 @@ async function fetchUserRepos(user, service) {
 
     if (result.isErr()) {
         message = 'Failed to get user repositories'
-        log = result.error
+        log = result.error.toString()
         repos = []
     } else {
         message = 'User repositories recieved'
