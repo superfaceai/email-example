@@ -1,7 +1,7 @@
 {
   "profiles": {
     "communication/send-email": {
-      "version": "1.0.1",
+      "version": "1.1.0",
       "priority": ["sendgrid", "mailgun"],
       "defaults": {
         "SendEmail": {
@@ -65,16 +65,7 @@
       "version": "3.0.1",
       "providers": {
         "nominatim": {
-          "file": "./maps/geocode.nominatim.suma",
-          "defaults": {
-            "ReverseGeocode": {
-              "retryPolicy": {
-                "kind": "circuit-breaker",
-                "maxContiguousRetries": 5,
-                "requestTimeout": 5000
-              }
-            }
-          }
+          "file": "./maps/geocode.nominatim.suma"
         },
         "google-apis": {
           "defaults": {
