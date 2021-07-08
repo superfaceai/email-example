@@ -74,7 +74,7 @@ body > h1 {
   margin-bottom: 0px;
 }
 
-h2 {
+h2:not(.failover-provider) {
   font-size: 1.3em;
   margin-bottom: 10px;
 }
@@ -102,7 +102,8 @@ form {
 
 button,
 input,
-textarea {
+textarea,
+select {
   font-family: inherit;
   font-size: 100%;
   background: #FFFFFF;
@@ -112,7 +113,7 @@ textarea {
   padding: 0.5rem 1rem;
 }
 
-input[type="text"], textarea {
+input[type="text"], textarea, select {
   width: 100%;
   max-width: 500px;
 }
@@ -165,8 +166,12 @@ fieldset[disabled='disabled'] {
   margin-top: 0;
 }
 
-.failover,
+.failover-wrapper,
 .response {
+  width: intrinsic;           /* Safari/WebKit uses a non-standard name */
+  width: -moz-max-content;    /* Firefox/Gecko */
+  width: -webkit-max-content; /* Chrome */
+  width: max-content;
   font-family: inherit;
   font-size: 100%;
   background: var(--color-text-main);
@@ -177,17 +182,28 @@ fieldset[disabled='disabled'] {
   margin: 0 0 15px;
 }
 
-.failover {
-  max-width: 500px;
+.failover-wrapper {
+  max-width: 1000px;
   background: var(--color-failover);
   color: var(--color-text-secondary);
 }
 
-.failover h4,
+.failover-chain {
+  padding: 5px;
+  margin-right: 25px;
+}
+
+.failover-wrapper h4,
 .response h4,
-.failover p,
+.failover-wrapper p,
 .response p {
   margin: 0;
+}
+
+.failover {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;;
 }
 
 .response h4 {
@@ -209,11 +225,14 @@ fieldset[disabled='disabled'] {
 .log {
   background-color: var(--color-text-main);
   color: var(--color-text-secondary);
-  width: 100%;
-  max-width: 500px;
+  width: intrinsic;           /* Safari/WebKit uses a non-standard name */
+  width: -moz-max-content;    /* Firefox/Gecko */
+  width: -webkit-max-content; /* Chrome */
+  width: max-content;
+  max-width: 1000px;
   border: 1px solid black;
   border-radius: 4px;
-  padding: 10px;
+  padding: 30px;
   overflow: hidden;
 }
 
