@@ -45,7 +45,7 @@ async function main() {
         reply.view('/src/pages/index.hbs', params)
     })
 
-    // A POST route to handle and react to form submissions
+    // A POST route to handle form submissions
     server.post('/', async function (request, reply) {
         const { email, type } = request.body
 
@@ -83,7 +83,14 @@ async function main() {
         }
 
         // Do the business
-        let failoverInfo, success, message, to, subject, mailBody, log
+        let failoverInfo,
+            success = true,
+            message,
+            to,
+            subject,
+            mailBody,
+            log,
+            repos
         if (!errorMessage) {
             to = request.body.email
 
@@ -96,49 +103,62 @@ async function main() {
 
                 case 'user-repos':
                     // Use superface to fetch the user repositories
-                    const { repos } = await fetchUserRepos(
+                    ;({ success, message, repos, log } = await fetchUserRepos(
                         request.body.user,
                         request.body.service
-                    )
+                    ))
 
-                    // Format the email subject & body
-                    subject = 'List of VCS repositories'
-                    mailBody = `Hi,\n\nhere is the list of repositories for ${request.body.user}:\n\n`
+                    if (success) {
+                        // Format the email subject & body
+                        subject = 'List of VCS repositories'
+                        mailBody = `Hi,\n\nhere is the list of repositories for ${request.body.user}:\n\n`
 
-                    // Format recieved repositories
-                    if (repos && repos.length) {
-                        repos.forEach((entry) => {
-                            mailBody += entry.name + '\n'
-                        })
-                    } else {
-                        mailBody += 'no repositories found'
+                        // Format recieved repositories
+                        if (repos && repos.length) {
+                            repos.forEach((entry) => {
+                                mailBody += entry.name + '\n'
+                            })
+                        } else {
+                            mailBody += 'no repositories found'
+                        }
+
+                        mailBody += '\n\n– Yours, https://superface.ai'
                     }
-
-                    mailBody += '\n\n– Yours, https//superface.ai'
                     break
 
                 case 'address':
                     const { latitude, longitude } = request.body
 
                     // Use Superface to get information about given location
-                    const addressResponse = await getAddress(
+                    ;({ success, message, log } = await getAddress(
                         latitude,
                         longitude,
                         request.body.service
-                    )
+                    ))
 
-                    // Format the email subject & body
-                    subject = 'Formatted address'
-                    mailBody = `Hi,\n\naddress for given latitude: ${latitude} and longitude: ${longitude} is:\n\n${addressResponse.message}\n\n- Yours, https//superface.ai`
+                    if (success) {
+                        // Format the email subject & body
+                        subject = 'Formatted address'
+                        mailBody = `Hi,\n\naddress for given latitude: ${latitude} and longitude: ${longitude} is:\n\n${addressResponse.message}\n\n- Yours, https://superface.ai`
+                    }
                     break
             }
 
-            // Use superface to send out the email
-            ;({ failoverInfo, success, message, log } = await sendEmail(
-                to,
-                subject,
-                mailBody
-            ))
+            if (success) {
+                // Use superface to send out the email
+                ;({ failoverInfo, success, message, log } = await sendEmail(
+                    to,
+                    subject,
+                    mailBody
+                ))
+            }
+        }
+
+        let resultLog;
+        if (log && typeof log.toString === 'function') {
+            resultLog = log.toString()
+        } else {
+            resultLog = JSON.stringify(log, null, 2)
         }
 
         // Fills parametres for the view
@@ -147,7 +167,7 @@ async function main() {
             message,
             errorMessage,
             success,
-            resultLog: JSON.stringify(log, null, 2),
+            resultLog,
             failoverInfo,
         }
 

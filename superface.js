@@ -23,14 +23,14 @@ async function sendEmail(email, subject, body) {
 
     if (result.isErr()) {
         message = 'Email failed'
-        console.log(message, result.error)
         log = result.error
     } else {
         message = 'Email was sent'
-        console.log(message, result.value)
         log = result.value
         success = true
     }
+
+    console.log(message, log);
 
     return {
         failoverInfo: getFailoverInfo('SendEmail'),
@@ -59,7 +59,7 @@ async function fetchUserRepos(user, service) {
 
     if (result.isErr()) {
         message = 'Failed to get user repositories'
-        log = result.error.toString()
+        log = result.error;
         repos = []
     } else {
         message = 'User repositories recieved'
@@ -68,7 +68,7 @@ async function fetchUserRepos(user, service) {
         success = true
     }
 
-    console.log(message)
+    console.log(message, log)
 
     return {
         success,
@@ -97,13 +97,13 @@ async function getAddress(latitude, longitude, service) {
     if (result.isErr()) {
         message = 'Getting address failed'
         log = result.error
-        console.log(message)
     } else {
         message = result.value[0].formattedAddress
         log = result.value
         success = true
-        console.log(result.value[0])
     }
+
+    console.log(message, log)
 
     return {
         success,
