@@ -44,7 +44,6 @@ window.onload = function () {
     mainForm.addEventListener(
         'submit',
         throttle((event) => {
-            console.log(event)
             mainSubmitButton.setAttribute('disabled', 'disabled')
         }, 10000)
     )

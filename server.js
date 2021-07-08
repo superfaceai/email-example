@@ -83,14 +83,7 @@ async function main() {
         }
 
         // Do the business
-        let failoverInfo,
-            success = true,
-            message,
-            to,
-            subject,
-            mailBody,
-            log,
-            repos
+        let subject, mailBody, success, message, log, repos, failoverInfo
         if (!errorMessage) {
             to = request.body.email
 
@@ -99,6 +92,7 @@ async function main() {
                     // Inject the email subject & body from request
                     subject = request.body.subject
                     mailBody = request.body.text
+                    success = true;
                     break
 
                 case 'user-repos':
@@ -154,7 +148,7 @@ async function main() {
             }
         }
 
-        let resultLog;
+        let resultLog
         if (log && typeof log.toString === 'function') {
             resultLog = log.toString()
         } else {
