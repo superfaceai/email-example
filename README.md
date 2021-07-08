@@ -1,21 +1,30 @@
-# Hello Superface
-### 8 lines of code to connect to 12 APIs
+# Email Example
 
-This project showcases the use of <https://superface.ai> to seamlessly integrate APIs without worrying about how they are implemented or even knowing what API and therefore provider do you use!
+This project showcases the use of <https://superface.ai> to seamlessly integrate APIs without worrying about how they are implemented or even knowing what API and therefore provider do you use.
 
-## The Demo
+## Table of Contents
 
-The demo application allows you to fetch the names of repositores for a specified GitHub or Gitlab user. The list is then sent to the email entered in the form.
+- [Application](#application)
+- [What's in this project?](#whats-in-this-project)
+- [Get in touch](#get-in-touch)
+
+## Application
+
+The demo application allows you to choose from 3 use cases, either classic email use case, fetch the names of repositores for a specified GitHub or Gitlab user or fetch the address for a specified coordinates and send these fetched information to the email entered in form.
 
 To see how to fetch the repositories or send email using Superface's [OneSDK](https://github.com/superfaceai/one-sdk-js) check out the `fetchUserRepos()` and `sendEmail()` fuctions in the `superface.js` file.
 
 ## What's in this project?
 
-← `superface.js`: This folder holds the main template for your site along with some basic data files.
+← `superface.js`: This file contains all superface code except superface client code, which should be centralized. It contains functions like `fetchUserRepos()` where profile and provider are set and result from perform is handled
 
-← `public/`, `src/`: Folders from the remixed from the Glitch Node.js starter project, it is safe to ignore those for the puprose of learning about Superface
+← `client.js`: This file contains centralized Superface client and function to get it
 
-← `server.js`: The main server script of the demo site, it does not contain an Superface-specific code only a boiler plate to make the demo work
+← `hooks.js`: This file contains settings of event hooks for centralized client, they're used to trigger fake failover on `pre-fetch`. It also contains functions to get information about failover.
+
+← `public/`, `src/`: Folders from the remixed Glitch Node.js starter project, it is safe to ignore those for the puprose of learning about Superface
+
+← `server.js`: The main server script of the demo site, it does not contain Superface-specific code, only a boiler plate to make the demo work
 
 ← `superface/`: Superface folder that contains the configuration of the [OneSDK](https://github.com/superfaceai/one-sdk-js) for the capabilities and providers used in the demo
 
@@ -23,55 +32,9 @@ To see how to fetch the repositories or send email using Superface's [OneSDK](ht
 
 ← `.env`: Secrets such as API keys for the used providers
 
-## More Examples
-
-Besides sending email and fetching GIT VCS user repositories you can find the following examples in the `superface.js`:
-
-### Send SMS
-
-The `sendSMS()` functions sends a single text message to single recipient. Can you spot in the code what provider is used?
-
-### Geocoding
-
-The `geocode()` functions showcases conversion of a postal address into geographical coordinates and then sending those coordinates as an SMS
-
-## 8 lines of code to connect to 12 APIs
-
-Four (4) capabilities, twelve (12) providers (=APIs), eight (8) lines of code
-
-### Send Email
-
-```js
-const profile = await sdk.getProfile("communication/send-email");
-const result = await profile.getUseCase("SendEmail").perform({ ... })
-```
-
-### Get user's git repositories
-
-```js
-const profile = await sdk.getProfile("vcs/user-repos");
-const result = await profile.getUseCase("UserRepos").perform({ ... })
-```
-
-### Send SMS
-
-```js
-const profile = await sdk.getProfile("communication/send-sms");
-const result = await profile.getUseCase("SendMessage").perform({ ... })
-```
-
-### Geocode Postal Address
-
-```js
-const profile = await sdk.getProfile("address/geocoding");
-const result = await profile.getUseCase("Geocode").perform({ ... })
-```
-
-
-
 ## Get in touch
 
-We would ❤️ to hear you feedback! Please get it touch either to Vrata (<a href="mailto:v@superface.ai">v@superface.ai</a>) or Z (<a href="mailto:z@superface.ai">z@superface.ai</a>).
+We would ❤️ to hear your feedback! Please get in touch either with Vrata (<a href="mailto:v@superface.ai">v@superface.ai</a>) or Z (<a href="mailto:z@superface.ai">z@superface.ai</a>).
 
 If you haven't already, sign up at [https://superface.ai](https://superface.ai). 
 
