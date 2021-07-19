@@ -16,12 +16,17 @@ const client = getClient();
 let failoverInfo = {};
 
 /**
+ * Variable representing whether user wants to trigger failover or not.
+ */
+let failover = false;
+
+/**
  */
 client.on(
   "pre-perform",
-  { priority: 5, filter: { profile: "communication/send-email" } },
+  { priority: 7, filter: { profile: "communication/send-email" } },
   (context, args) => {
-    console.log(`PRE-PERFORM: current provider: ${context.provider}`);
+    // console.log(`PRE-PERFORM: current provider: ${context.provider}`);
 
     return { kind: "continue" };
   }
@@ -35,26 +40,27 @@ client.on(
   "pre-fetch",
   { priority: 6, filter: { profile: "communication/send-email" } },
   (context, args) => {
-    console.log(`PRE-FETCH: current provider: ${context.provider}`);
+    // console.log(`PRE-FETCH: current provider: ${context.provider}`);
     addFailoverInfo(context.usecase, context.provider);
     
-    if (context.provider === "sendgrid") {
-      console.log(
-        "Modifying original base url of provider sendgrid to trigger failover"
-      );
-
-      return {
-        kind: "modify",
-        newArgs: ["https://localhost.unavailable", args[1]]
-      };
+    if (failover) {
+      if (context.provider === "sendgrid") {
+        return {
+          kind: "modify",
+          newArgs: ["https://localhost.unavailable", args[1]]
+        };
+      } else {
+        return { kind: "continue" };
+      }
     } else {
       return { kind: "continue" };
     }
   }
 );
 
-client.on("post-perform", { priority: 7 }, async (context, args, result) => {
-  console.log(`POST-PERFORM: current provider: ${context.provider}`, args);
+client.on("post-perform", { priority: 5 }, async (context, args, result) => {
+  // console.log(`POST-PERFORM: current provider: ${context.provider}`, args);
+  failover = false;
 
   return { kind: "continue" };
 });
@@ -86,7 +92,12 @@ function addFailoverInfo(usecase, provider) {
   }
 }
 
+function triggerFailover() {
+  failover = true;
+}
+
 module.exports = {
   getFailoverInfo,
-  addFailoverInfo
+  addFailoverInfo,
+  triggerFailover
 };
