@@ -1,8 +1,10 @@
 const childProcess = require('child_process')
 const path = require('path')
 const dotenv = require('dotenv')
+const Handlebars = require('handlebars')
 const { promisify } = require('util')
 
+const { triggerFailover } = require('./hooks')
 const { sendEmail, fetchUserRepos, getAddress } = require('./superface')
 
 const exec = promisify(childProcess.exec)
@@ -29,7 +31,7 @@ async function main() {
     // point-of-view is a templating manager for fastify
     await server.register(require('point-of-view'), {
         engine: {
-            handlebars: require('handlebars'),
+            handlebars: Handlebars,
         },
     })
 
@@ -47,7 +49,7 @@ async function main() {
 
     // A POST route to handle form submissions
     server.post('/', async function (request, reply) {
-        const { email, type } = request.body
+        const { email, type, doFailover } = request.body
 
         // "Validate form input"
         let errorMessage
@@ -82,8 +84,12 @@ async function main() {
                 }
         }
 
+        if (doFailover && doFailover === 'on') {
+            triggerFailover()
+        }
+
         // Do the business
-        let subject, mailBody, success, message, log, repos, failoverInfo
+        let to, subject, mailBody, success, message, log, repos, failoverInfo
         if (!errorMessage) {
             to = request.body.email
 
@@ -92,7 +98,7 @@ async function main() {
                     // Inject the email subject & body from request
                     subject = request.body.subject
                     mailBody = request.body.text
-                    success = true;
+                    success = true
                     break
 
                 case 'user-repos':
@@ -133,7 +139,7 @@ async function main() {
                     if (success) {
                         // Format the email subject & body
                         subject = 'Formatted address'
-                        mailBody = `Hi,\n\naddress for given latitude: ${latitude} and longitude: ${longitude} is:\n\n${addressResponse.message}\n\n- Yours, https://superface.ai`
+                        mailBody = `Hi,\n\naddress for given latitude: ${latitude} and longitude: ${longitude} is:\n\n${message}\n\n- Yours, https://superface.ai`
                     }
                     break
             }
@@ -149,10 +155,15 @@ async function main() {
         }
 
         let resultLog
-        if (log && typeof log.toString === 'function') {
-            resultLog = log.toString()
-        } else {
-            resultLog = JSON.stringify(log, null, 2)
+        if (log) {
+            if (
+                typeof log.toString === 'function' &&
+                log.toString() !== '[object Object]'
+            ) {
+                resultLog = log.toString()
+            } else {
+                resultLog = JSON.stringify(log, null, 2)
+            }
         }
 
         // Fills parametres for the view
