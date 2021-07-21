@@ -53,10 +53,12 @@ client.on(
   }
 );
 
-client.on("post-perform", { priority: 7 }, async (context, args, result) => {
-  console.log(`POST-PERFORM: current provider: ${context.provider}`, args);
+client.on("post-perform", 
+  { priority: 7, filter: { profile: "communication/send-email" } }, 
+  async (context, args, result) => {
+    console.log(`POST-PERFORM: current provider: ${context.provider}`, args);
 
-  return { kind: "continue" };
+    return { kind: "continue" };
 });
 
 function getFailoverInfo(usecase) {
