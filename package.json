@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@superfaceai/cli": "^0.0.18",
-    "@superfaceai/one-sdk": "v0.0.29-beta.5",
+    "@superfaceai/one-sdk": "^0.0.29",
     "dotenv": "^10.0.0",
     "fastify": "^3.18.0",
     "fastify-formbody": "^5.0.0",
