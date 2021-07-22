@@ -1,7 +1,6 @@
 const childProcess = require('child_process')
 const path = require('path')
 const dotenv = require('dotenv')
-const Handlebars = require('handlebars')
 const { promisify } = require('util')
 
 const { triggerFailover } = require('./hooks')
@@ -31,7 +30,7 @@ async function main() {
     // point-of-view is a templating manager for fastify
     await server.register(require('point-of-view'), {
         engine: {
-            handlebars: Handlebars,
+            handlebars: require('handlebars'),
         },
     })
 
@@ -84,9 +83,7 @@ async function main() {
                 }
         }
 
-        if (doFailover && doFailover === 'on') {
-            triggerFailover()
-        }
+        triggerFailover(doFailover === 'on')
 
         // Do the business
         let to, subject, mailBody, success, message, log, repos, failoverInfo
