@@ -142,7 +142,7 @@ label {
   display: inline-block;
 }
 
-#options label {
+#options label, #simulate-failover label {
   margin: 0;
   font-weight: normal
 }
