@@ -18,7 +18,8 @@
                 "requestTimeout": 1500
               },
               "input": {
-                "from": "hello@superface.org"
+                "from": "$SENDGRID_FROM",
+                "domain": "$SENDGRID_DOMAIN"
               }
             }
           }
@@ -33,8 +34,8 @@
                 "backoff": "exponential"
               },
               "input": {
-                "from": "hello@superface.org",
-                "domain": "$MAILGUN_COMMUNICATION_DOMAIN"
+                "from": "$MAILGUN_FROM",
+                "domain": "$MAILGUN_DOMAIN"
               }
             }
           }

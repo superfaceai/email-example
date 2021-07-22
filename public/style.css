@@ -142,7 +142,7 @@ label {
   display: inline-block;
 }
 
-#options label {
+#options label, #simulate-failover label {
   margin: 0;
   font-weight: normal
 }
@@ -229,7 +229,7 @@ fieldset[disabled='disabled'] {
   width: -moz-max-content;    /* Firefox/Gecko */
   width: -webkit-max-content; /* Chrome */
   width: max-content;
-  max-width: 1000px;
+  max-width: 100%;
   border: 1px solid black;
   border-radius: 4px;
   padding: 30px;
