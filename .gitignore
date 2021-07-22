@@ -109,3 +109,6 @@ dist
 
 # yalc
 .yalc
+
+# github CD script
+git.sh
