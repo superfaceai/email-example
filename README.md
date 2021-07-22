@@ -1,12 +1,6 @@
 # Email Example
 
-This project showcases the use of <https://superface.ai> to seamlessly integrate APIs without worrying about how they are implemented or even knowing what API and therefore provider do you use.
-
-## Table of Contents
-
-- [Application](#application)
-- [What's in this project?](#whats-in-this-project)
-- [Get in touch](#get-in-touch)
+This project showcases the use of <https://superface.ai> to seamlessly integrate APIs and handle provider's failover without worrying about how they are implemented or even knowing what API and therefore provider do you use.
 
 ## Application
 
@@ -16,7 +10,7 @@ To see how to fetch the repositories or send email using Superface's [OneSDK](ht
 
 ## What's in this project?
 
-← `superface.js`: This file contains all superface code except superface client code, which should be centralized. It contains functions like `fetchUserRepos()` where profile and provider are set and result from perform is handled
+← `superface.js`: This file contains all superface code except superface client code, which is centralized in `client.js`. It contains functions like `fetchUserRepos()` where profile and provider are set and result from perform is handled
 
 ← `client.js`: This file contains centralized Superface client and function to get it
 
@@ -24,13 +18,19 @@ To see how to fetch the repositories or send email using Superface's [OneSDK](ht
 
 ← `public/`, `src/`: Folders from the remixed Glitch Node.js starter project, it is safe to ignore those for the puprose of learning about Superface
 
-← `server.js`: The main server script of the demo site, it does not contain Superface-specific code, only a boiler plate to make the demo work
+← `server.js`: The main server script of the application, it does not contain Superface-specific code, only a boiler plate to make the application work
 
-← `superface/`: Superface folder that contains the configuration of the [OneSDK](https://github.com/superfaceai/one-sdk-js) for the capabilities and providers used in the demo
+← `superface/`: Superface folder that contains the configuration of the [OneSDK](https://github.com/superfaceai/one-sdk-js) for the capabilities and providers used in the application
 
 ← `superface/super.json`: The actual configuration of the capabilties and providers
 
 ← `.env`: Secrets such as API keys for the used providers
+
+## More Examples
+
+[Geocode Example](https://glitch.com/edit/#!/superface-geocode) - use Superface to get coordinates from address
+
+[Reverse Geocode Example](https://glitch.com/edit/#!/reverse-geocode-superface) - use Superface to get address from coordinates
 
 ## Get in touch
 
