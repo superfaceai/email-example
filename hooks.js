@@ -25,18 +25,6 @@ function triggerFailover(check) {
 }
 
 /**
- */
-client.on(
-  "pre-perform",
-  { priority: 5, filter: { profile: "communication/send-email" } },
-  (context, args) => {
-    console.log(`PRE-PERFORM: current provider: ${context.provider}`);
-
-    return { kind: "continue" };
-  }
-);
-
-/**
  * Triggers fake failover on email provider sendgrid
  * and adds context information to local failover info object
  */
@@ -55,15 +43,6 @@ client.on(
         };
       }
     } 
-
-    return { kind: "continue" };
-  }
-);
-
-client.on("post-perform", 
-  { priority: 7, filter: {profile: "communication/send-email"} }, 
-  async (context, args, result) => {
-    console.log(`POST-PERFORM: current provider: ${context.provider}`, args);
 
     return { kind: "continue" };
   }
