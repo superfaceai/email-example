@@ -1,12 +1,12 @@
 :root {
-  --color-bg:#434A53;
-  --color-text-main: #F9F9FB;
-  --color-text-secondary: #434A53;
+  --color-bg: #434a53;
+  --color-text-main: #f9f9fb;
+  --color-text-secondary: #434a53;
   --color-borders: #212632;
-  --color-buttons: #1EE2C7;
+  --color-buttons: #1ee2c7;
   --color-black: black;
   --color-error: red;
-  --color-failover: #FBD651;
+  --color-failover: #fbd651;
   --font-family: HK Grotesk;
 }
 
@@ -41,7 +41,7 @@
   height: 2.75rem;
   align-items: center;
   cursor: pointer;
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid #000000;
   box-sizing: border-box;
   border-radius: 4px;
@@ -54,7 +54,7 @@
   margin-right: 0.5rem;
 }
 .btn--remix:hover {
-  background-color: #D0FFF1;
+  background-color: #d0fff1;
 }
 
 /* Superface styles */
@@ -92,7 +92,8 @@ p {
   font-size: 1rem;
 }
 
-a, a:visited {
+a,
+a:visited {
   color: #fff;
 }
 
@@ -106,14 +107,16 @@ textarea,
 select {
   font-family: inherit;
   font-size: 100%;
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid var(--color-borders);
   box-sizing: border-box;
   border-radius: 4px;
   padding: 0.5rem 1rem;
 }
 
-input[type="text"], textarea, select {
+input[type="text"],
+textarea,
+select {
   width: 100%;
   max-width: 500px;
 }
@@ -142,9 +145,10 @@ label {
   display: inline-block;
 }
 
-#options label, #simulate-failover label {
+#options label,
+#simulate-failover label {
   margin: 0;
-  font-weight: normal
+  font-weight: normal;
 }
 
 #user-repos-form,
@@ -152,7 +156,7 @@ label {
   display: none;
 }
 
-fieldset[disabled='disabled'] {
+fieldset[disabled="disabled"] {
   display: none !important;
 }
 
@@ -168,8 +172,8 @@ fieldset[disabled='disabled'] {
 
 .failover-wrapper,
 .response {
-  width: intrinsic;           /* Safari/WebKit uses a non-standard name */
-  width: -moz-max-content;    /* Firefox/Gecko */
+  width: intrinsic; /* Safari/WebKit uses a non-standard name */
+  width: -moz-max-content; /* Firefox/Gecko */
   width: -webkit-max-content; /* Chrome */
   width: max-content;
   font-family: inherit;
@@ -203,11 +207,11 @@ fieldset[disabled='disabled'] {
 .failover {
   display: flex;
   align-items: center;
-  justify-content: flex-start;;
+  justify-content: flex-start;
 }
 
 .response h4 {
-  color: var(--color-black)
+  color: var(--color-black);
 }
 
 .response h4,
@@ -219,14 +223,14 @@ fieldset[disabled='disabled'] {
   color: var(--color-error);
 }
 .response-value > .response-message {
-  color: var(--color-black)
+  color: var(--color-black);
 }
 
 .log {
   background-color: var(--color-text-main);
   color: var(--color-text-secondary);
-  width: intrinsic;           /* Safari/WebKit uses a non-standard name */
-  width: -moz-max-content;    /* Firefox/Gecko */
+  width: intrinsic; /* Safari/WebKit uses a non-standard name */
+  width: -moz-max-content; /* Firefox/Gecko */
   width: -webkit-max-content; /* Chrome */
   width: max-content;
   max-width: 100%;

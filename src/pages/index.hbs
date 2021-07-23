@@ -1,125 +1,170 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <script src="index.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Email Example</title>
-    <link rel="stylesheet" href="/style.css" /> 
+    <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
     <h1>
       Hello Superface!
     </h1>
     <h3>
-      Example application showcasing Superface <a href="https://github.com/superfaceai/one-sdk-js">One SDK</a>.
+      Example application showcasing Superface
+      <a href="https://github.com/superfaceai/one-sdk-js">One SDK</a>.
     </h3>
-    
+
     <form action="/" method="post" id="main-form">
       <div class="form-group">
         <h2>Enter your email</h2>
-        <input type="text" id="email" name="email" value="" placeholder="john@appleseed.com">
+        <input
+          type="text"
+          id="email"
+          name="email"
+          value=""
+          placeholder="john@appleseed.com"
+        />
       </div>
-      
+
       <div class="form-group" id="options">
-        <input type="radio" id="classic" name="type" value="classic" onchange="displayForm(this.value)" checked>
+        <input
+          type="radio"
+          id="classic"
+          name="type"
+          value="classic"
+          onchange="displayForm(this.value)"
+          checked
+        />
         <label for="classic">Classic</label>
-        
-        <input type="radio" id="user-repos" name="type" value="user-repos" onchange="displayForm(this.value)">
+
+        <input
+          type="radio"
+          id="user-repos"
+          name="type"
+          value="user-repos"
+          onchange="displayForm(this.value)"
+        />
         <label for="user-repos">User repos</label>
-        
-        <input type="radio" id="address" name="type" value="address" onchange="displayForm(this.value)">
+
+        <input
+          type="radio"
+          id="address"
+          name="type"
+          value="address"
+          onchange="displayForm(this.value)"
+        />
         <label for="address">Address</label>
       </div>
-      
+
       <fieldset class="form-group" id="classic-form">
         <h2>Enter a subject</h2>
-        <input type="text" id="subject" name="subject" placeholder="superfaceai"><br>
-        
+        <input
+          type="text"
+          id="subject"
+          name="subject"
+          placeholder="superfaceai"
+        /><br />
+
         <h2>Enter a text</h2>
-        <textarea id="text" name="text" cols="40" rows="5" placeholder="Say something"></textarea>
+        <textarea
+          id="text"
+          name="text"
+          cols="40"
+          rows="5"
+          placeholder="Say something"
+        ></textarea>
       </fieldset>
-      
+
       <fieldset class="form-group" id="user-repos-form" disabled="disabled">
         <h2>Enter your GitHub, Gitlab or Bitbucket username</h2>
-        <input type="text" id="user" name="user" value="superfaceai"><br>
-        
+        <input type="text" id="user" name="user" value="superfaceai" /><br />
+
         <h2>Choose the Provider</h2>
-        <select name = "service" id="service">
-          <option value = "github" selected>GitHub</option>
-          <option value = "gitlab">GitLab</option>
-          <option value = "bitbucket">Bitbucket</option>
+        <select name="service" id="service">
+          <option value="github" selected>GitHub</option>
+          <option value="gitlab">GitLab</option>
+          <option value="bitbucket">Bitbucket</option>
         </select>
       </fieldset>
-        
+
       <fieldset class="form-group" id="address-form" disabled="disabled">
         <h2>Enter a Latitude</h2>
-        <input type="text" id="latitude" name="latitude" value="50.0874654"><br>
-        
+        <input
+          type="text"
+          id="latitude"
+          name="latitude"
+          value="50.0874654"
+        /><br />
+
         <h2>Enter a Longitude</h2>
-        <input type="text" id="longitude" name="longitude" value="14.4212535"><br>
-        
+        <input
+          type="text"
+          id="longitude"
+          name="longitude"
+          value="14.4212535"
+        /><br />
+
         <h2>Choose the Provider</h2>
-        <select name = "service" id="service">
-          <option value = "nominatim" selected>nominatim</option>
-          <option value = "google-apis">google-apis</option>
-          <option value = "opencage">opencage</option>
+        <select name="service" id="service">
+          <option value="nominatim" selected>nominatim</option>
+          <option value="google-apis">google-apis</option>
+          <option value="opencage">opencage</option>
         </select>
       </fieldset>
 
       <fieldset class="form-group" id="simulate-failover">
-        <input type="checkbox" id="doFailover" name="doFailover">
-        <label for="doFailover">Simulate Sendgrid API failure</label><br>
+        <input type="checkbox" id="doFailover" name="doFailover" />
+        <label for="doFailover">Simulate Sendgrid API failure</label><br />
       </fieldset>
 
-      <input type="submit" value="Submit" id="main-submit">
-    
+      <input type="submit" value="Submit" id="main-submit" />
+
       <section id="info">
         {{#if errorMessage}}
           <div class="response response-error">
             <h4>Form Error:</h4>
-            <p class="response-message" >
-              {{ errorMessage }}
+            <p class="response-message">
+              {{errorMessage}}
             </p>
           </div>
         {{/if}}
 
         {{#if message}}
           <h2>
-            {{#if success}} 
-              &#127881;    
+            {{#if success}}
+              &#127881;
             {{else}}
               &#128680;
             {{/if}}
-            {{ message }}
+            {{message}}
           </h2>
         {{/if}}
-        
+
         {{#if resultLog}}
           <div class="log">
-              <pre>{{ resultLog }}</pre>
+            <pre>{{resultLog}}</pre>
           </div>
         {{/if}}
 
         {{#if failoverInfo}}
           {{#if failoverInfo.happened}}
             <h2>&#128227; Failover happened</h2>
-            <div class="failover-wrapper"> 
+            <div class="failover-wrapper">
               <h4>Used providers in use case:</h4>
-              <div class="failover"> 
-                {{#each failoverInfo.info as |provider| }}
+              <div class="failover">
+                {{#each failoverInfo.info as |provider|}}
                   <div class="failover-chain">
                     <h2 class="failover-provider">
-                      {{ provider }}
+                      {{provider}}
                     </h2>
                   </div>
                 {{/each}}
               </div>
             </div>
           {{/if}}
-        {{/if}}  
+        {{/if}}
       </section>
     </form>
   </body>
 </html>
-
