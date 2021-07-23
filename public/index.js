@@ -15,7 +15,6 @@ function throttle(callback, limit) {
     }
 }
 
-
 function displayForm(type) {
     const selectedForm = document.getElementById(type + '-form')
     const classicForm = document.getElementById('classic-form')

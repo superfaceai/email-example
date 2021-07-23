@@ -36,6 +36,6 @@ To see how to fetch the repositories or send email using Superface's [OneSDK](ht
 
 We would ❤️ to hear your feedback! Please get in touch either with Vrata (<a href="mailto:v@superface.ai">v@superface.ai</a>) or Z (<a href="mailto:z@superface.ai">z@superface.ai</a>).
 
-If you haven't already, sign up at [https://superface.ai](https://superface.ai). 
+If you haven't already, sign up at [https://superface.ai](https://superface.ai).
 
 You can also follow us at Twitter [@superfaceai](https://twitter.com/superfaceai).

@@ -30,7 +30,7 @@ async function sendEmail(email, subject, body) {
         success = true
     }
 
-    console.log(message, log);
+    console.log(message, log)
 
     return {
         failoverInfo: getFailoverInfo('SendEmail'),
@@ -59,7 +59,7 @@ async function fetchUserRepos(user, service) {
 
     if (result.isErr()) {
         message = 'Failed to get user repositories'
-        log = result.error;
+        log = result.error
         repos = []
     } else {
         message = 'User repositories recieved'
