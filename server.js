@@ -1,6 +1,7 @@
 const childProcess = require("child_process");
-const path = require("path");
+const crypto = require("crypto");
 const dotenv = require("dotenv");
+const path = require("path");
 const { promisify } = require("util");
 
 const { triggerFailover } = require("./hooks");
