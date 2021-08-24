@@ -31,13 +31,13 @@
           "defaults": {
             "SendEmail": {
               "input": {
-                "from": "$MAILGUN_FROM",
-                "domain": "$MAILGUN_DOMAIN"
+                "from": "$MAILGUN_COMMUNICATION_FROM",
+                "domain": "$MAILGUN_COMMUNICATION_DOMAIN"
               },
               "retryPolicy": {
                 "kind": "circuit-breaker",
                 "maxContiguousRetries": 3,
-                "requestTimeout": 2000,
+                "requestTimeout": 1000,
                 "backoff": "exponential"
               }
             }

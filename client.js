@@ -1,4 +1,4 @@
-const { SuperfaceClient } = require("@superfaceai/one-sdk");
+const { SuperfaceClient } = require('@superfaceai/one-sdk');
 
 /**
  * Centralized instance of `SuperfaceClient`.
@@ -18,5 +18,5 @@ function getClient() {
 }
 
 module.exports = {
-  getClient
+  getClient,
 };

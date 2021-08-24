@@ -41,13 +41,13 @@ async function main() {
   }
 
   // Our home page route, this pulls from src/pages/index.hbs
-  server.get("/", function (request, reply) {
+  server.get("/", function(request, reply) {
     let params = { seo: seo };
     reply.view("/src/pages/index.hbs", params);
   });
 
   // A POST route to handle form submissions
-  server.post("/", async function (request, reply) {
+  server.post("/", async function(request, reply) {
     const { email, type, doFailover } = request.body;
 
     // "Validate form input"
@@ -112,7 +112,7 @@ async function main() {
 
             // Format recieved repositories
             if (repos && repos.length) {
-              repos.forEach((entry) => {
+              repos.forEach(entry => {
                 mailBody += entry.name + "\n";
               });
             } else {

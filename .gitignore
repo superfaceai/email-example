@@ -112,3 +112,13 @@ dist
 
 # github CD script
 git.sh
+
+# prettier config files
+.prettierignore
+.prettierrc.js
+
+# other?
+colors.json
+public
+src
+assets
