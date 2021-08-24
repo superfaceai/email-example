@@ -6,8 +6,8 @@
     "name": "geocoding",
     "version": {
       "major": 3,
-      "minor": 0,
-      "patch": 1
+      "minor": 1,
+      "patch": 0
     },
     "location": {
       "line": 1,
@@ -31,7 +31,7 @@
           "fields": [
             {
               "kind": "FieldDefinition",
-              "fieldName": "addressCountry",
+              "fieldName": "query",
               "required": false,
               "location": {
                 "line": 15,
@@ -39,46 +39,7 @@
               },
               "span": {
                 "start": 269,
-                "end": 283
-              }
-            },
-            {
-              "kind": "FieldDefinition",
-              "fieldName": "addressLocality",
-              "required": false,
-              "location": {
-                "line": 16,
-                "column": 5
-              },
-              "span": {
-                "start": 288,
-                "end": 303
-              }
-            },
-            {
-              "kind": "FieldDefinition",
-              "fieldName": "addressRegion",
-              "required": false,
-              "location": {
-                "line": 17,
-                "column": 5
-              },
-              "span": {
-                "start": 308,
-                "end": 321
-              }
-            },
-            {
-              "kind": "FieldDefinition",
-              "fieldName": "postalCode",
-              "required": false,
-              "location": {
-                "line": 18,
-                "column": 5
-              },
-              "span": {
-                "start": 326,
-                "end": 336
+                "end": 274
               }
             },
             {
@@ -86,12 +47,64 @@
               "fieldName": "streetAddress",
               "required": false,
               "location": {
+                "line": 16,
+                "column": 5
+              },
+              "span": {
+                "start": 279,
+                "end": 292
+              }
+            },
+            {
+              "kind": "FieldDefinition",
+              "fieldName": "addressLocality",
+              "required": false,
+              "location": {
+                "line": 17,
+                "column": 5
+              },
+              "span": {
+                "start": 297,
+                "end": 312
+              }
+            },
+            {
+              "kind": "FieldDefinition",
+              "fieldName": "addressRegion",
+              "required": false,
+              "location": {
+                "line": 18,
+                "column": 5
+              },
+              "span": {
+                "start": 317,
+                "end": 330
+              }
+            },
+            {
+              "kind": "FieldDefinition",
+              "fieldName": "addressCountry",
+              "required": false,
+              "location": {
                 "line": 19,
                 "column": 5
               },
               "span": {
-                "start": 341,
-                "end": 354
+                "start": 335,
+                "end": 349
+              }
+            },
+            {
+              "kind": "FieldDefinition",
+              "fieldName": "postalCode",
+              "required": false,
+              "location": {
+                "line": 20,
+                "column": 5
+              },
+              "span": {
+                "start": 354,
+                "end": 364
               }
             }
           ],
@@ -101,7 +114,7 @@
           },
           "span": {
             "start": 263,
-            "end": 358
+            "end": 368
           }
         },
         "location": {
@@ -110,7 +123,7 @@
         },
         "span": {
           "start": 257,
-          "end": 358
+          "end": 368
         }
       },
       "result": {
@@ -123,12 +136,12 @@
               "fieldName": "latitude",
               "required": true,
               "location": {
-                "line": 23,
+                "line": 24,
                 "column": 5
               },
               "span": {
-                "start": 375,
-                "end": 384
+                "start": 385,
+                "end": 394
               }
             },
             {
@@ -136,31 +149,31 @@
               "fieldName": "longitude",
               "required": true,
               "location": {
-                "line": 24,
+                "line": 25,
                 "column": 5
               },
               "span": {
-                "start": 389,
-                "end": 399
+                "start": 399,
+                "end": 409
               }
             }
           ],
           "location": {
-            "line": 22,
+            "line": 23,
             "column": 10
           },
           "span": {
-            "start": 369,
-            "end": 403
+            "start": 379,
+            "end": 413
           }
         },
         "location": {
-          "line": 22,
+          "line": 23,
           "column": 3
         },
         "span": {
-          "start": 362,
-          "end": 403
+          "start": 372,
+          "end": 413
         }
       },
       "location": {
@@ -169,7 +182,7 @@
       },
       "span": {
         "start": 134,
-        "end": 405
+        "end": 415
       },
       "title": "Geocode address",
       "description": "Geocode postal address into geographical coordinates (latitude and longitude)"
@@ -187,12 +200,12 @@
               "fieldName": "latitude",
               "required": true,
               "location": {
-                "line": 35,
+                "line": 36,
                 "column": 5
               },
               "span": {
-                "start": 551,
-                "end": 560
+                "start": 561,
+                "end": 570
               }
             },
             {
@@ -200,31 +213,31 @@
               "fieldName": "longitude",
               "required": true,
               "location": {
-                "line": 36,
+                "line": 37,
                 "column": 5
               },
               "span": {
-                "start": 565,
-                "end": 575
+                "start": 575,
+                "end": 585
               }
             }
           ],
           "location": {
-            "line": 34,
+            "line": 35,
             "column": 9
           },
           "span": {
-            "start": 545,
-            "end": 579
+            "start": 555,
+            "end": 589
           }
         },
         "location": {
-          "line": 34,
+          "line": 35,
           "column": 3
         },
         "span": {
-          "start": 539,
-          "end": 579
+          "start": 549,
+          "end": 589
         }
       },
       "result": {
@@ -239,25 +252,12 @@
                 "fieldName": "addressCountry",
                 "required": false,
                 "location": {
-                  "line": 40,
-                  "column": 5
-                },
-                "span": {
-                  "start": 597,
-                  "end": 611
-                }
-              },
-              {
-                "kind": "FieldDefinition",
-                "fieldName": "addressLocality",
-                "required": false,
-                "location": {
                   "line": 41,
                   "column": 5
                 },
                 "span": {
-                  "start": 616,
-                  "end": 631
+                  "start": 607,
+                  "end": 621
                 }
               },
               {
@@ -269,21 +269,21 @@
                   "column": 5
                 },
                 "span": {
-                  "start": 636,
-                  "end": 649
+                  "start": 626,
+                  "end": 639
                 }
               },
               {
                 "kind": "FieldDefinition",
-                "fieldName": "postalCode",
+                "fieldName": "addressLocality",
                 "required": false,
                 "location": {
                   "line": 43,
                   "column": 5
                 },
                 "span": {
-                  "start": 654,
-                  "end": 664
+                  "start": 644,
+                  "end": 659
                 }
               },
               {
@@ -295,8 +295,21 @@
                   "column": 5
                 },
                 "span": {
-                  "start": 669,
-                  "end": 682
+                  "start": 664,
+                  "end": 677
+                }
+              },
+              {
+                "kind": "FieldDefinition",
+                "fieldName": "postalCode",
+                "required": false,
+                "location": {
+                  "line": 45,
+                  "column": 5
+                },
+                "span": {
+                  "start": 682,
+                  "end": 692
                 }
               },
               {
@@ -304,105 +317,119 @@
                 "fieldName": "formattedAddress",
                 "required": false,
                 "location": {
-                  "line": 45,
+                  "line": 46,
                   "column": 5
                 },
                 "span": {
-                  "start": 687,
-                  "end": 703
+                  "start": 697,
+                  "end": 713
                 }
               }
             ],
             "location": {
-              "line": 39,
+              "line": 40,
               "column": 11
             },
             "span": {
-              "start": 591,
-              "end": 707
+              "start": 601,
+              "end": 717
             }
           },
           "location": {
-            "line": 39,
+            "line": 40,
             "column": 10
           },
           "span": {
-            "start": 590,
-            "end": 708
+            "start": 600,
+            "end": 718
           }
         },
         "location": {
-          "line": 39,
+          "line": 40,
           "column": 3
         },
         "span": {
-          "start": 583,
-          "end": 708
+          "start": 593,
+          "end": 718
         }
       },
       "location": {
-        "line": 28,
+        "line": 29,
         "column": 1
       },
       "span": {
-        "start": 407,
-        "end": 712
+        "start": 417,
+        "end": 722
       },
       "title": "Reverse geocode",
       "description": "Decodes geographical coordinates (latitude and longitude) into postal addresses"
     },
     {
       "kind": "NamedFieldDefinition",
-      "fieldName": "addressCountry",
+      "fieldName": "query",
       "location": {
-        "line": 49,
+        "line": 50,
         "column": 1
       },
       "span": {
-        "start": 714,
-        "end": 846
+        "start": 724,
+        "end": 867
+      },
+      "title": "Query",
+      "description": "Free-form query string to search for. For example, '1600 Amphitheatre Parkway, Mountain View, CA' or just 'Mountain View'"
+    },
+    {
+      "kind": "NamedFieldDefinition",
+      "fieldName": "addressCountry",
+      "location": {
+        "line": 54,
+        "column": 1
+      },
+      "span": {
+        "start": 869,
+        "end": 1001
       },
       "title": "Country",
       "description": "The country. For example, USA. You can also provide the two-letter ISO 3166-1 alpha-2 country code."
     },
     {
       "kind": "NamedFieldDefinition",
-      "fieldName": "addressLocality",
-      "location": {
-        "line": 53,
-        "column": 1
-      },
-      "span": {
-        "start": 848,
-        "end": 983
-      },
-      "title": "Locality",
-      "description": "The locality in which the street address is, and which is in the region. For example, Mountain View."
-    },
-    {
-      "kind": "NamedFieldDefinition",
       "fieldName": "addressRegion",
       "location": {
-        "line": 57,
+        "line": 58,
         "column": 1
       },
       "span": {
-        "start": 985,
-        "end": 1164
+        "start": 1003,
+        "end": 1182
       },
       "title": "Region",
       "description": "The region in which the locality is, and which is in the country. For example, California or another appropriate first-level Administrative division"
     },
     {
       "kind": "NamedFieldDefinition",
-      "fieldName": "postalCode",
+      "fieldName": "addressLocality",
       "location": {
-        "line": 61,
+        "line": 62,
         "column": 1
       },
       "span": {
-        "start": 1166,
-        "end": 1235
+        "start": 1184,
+        "end": 1319
+      },
+      "title": "Locality",
+      "description": "The locality in which the street address is, and which is in the region. For example, Mountain View."
+    },
+    {
+      "kind": "NamedFieldDefinition",
+      "fieldName": "postalCode",
+      "location": {
+        "line": 66,
+        "column": 1
+      },
+      "span": {
+        "start": 1321,
+        "end": 1390
       },
       "title": "Postal code",
       "description": "The postal code. For example, 94043."
@@ -411,12 +438,12 @@
       "kind": "NamedFieldDefinition",
       "fieldName": "streetAddress",
       "location": {
-        "line": 65,
+        "line": 70,
         "column": 1
       },
       "span": {
-        "start": 1237,
-        "end": 1332
+        "start": 1392,
+        "end": 1487
       },
       "title": "Street address",
       "description": "The street address. For example, 1600 Amphitheatre Pkwy."
@@ -425,12 +452,12 @@
       "kind": "NamedFieldDefinition",
       "fieldName": "latitude",
       "location": {
-        "line": 69,
+        "line": 74,
         "column": 1
       },
       "span": {
-        "start": 1334,
-        "end": 1420
+        "start": 1489,
+        "end": 1575
       },
       "title": "Latitude",
       "description": "The latitude of a location. For example 37.42242 (WGS 84)."
@@ -439,12 +466,12 @@
       "kind": "NamedFieldDefinition",
       "fieldName": "longitude",
       "location": {
-        "line": 73,
+        "line": 78,
         "column": 1
       },
       "span": {
-        "start": 1422,
-        "end": 1513
+        "start": 1577,
+        "end": 1668
       },
       "title": "Longitude",
       "description": "The longitude of a location. For example -122.08585 (WGS 84)."
@@ -453,12 +480,12 @@
       "kind": "NamedFieldDefinition",
       "fieldName": "formattedAddress",
       "location": {
-        "line": 77,
+        "line": 82,
         "column": 1
       },
       "span": {
-        "start": 1515,
-        "end": 1591
+        "start": 1670,
+        "end": 1746
       },
       "title": "Formatted address",
       "description": "Address formatted as one string"
@@ -470,6 +497,6 @@
   },
   "span": {
     "start": 0,
-    "end": 1591
+    "end": 1746
   }
 }

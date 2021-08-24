@@ -1,10 +1,15 @@
 import { TypedProfile } from '@superfaceai/one-sdk';
 export declare type AddressGeocodingGeocodeInput = {
     /**
-     * Country
-     * The country. For example, USA. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
+     * Query
+     * Free-form query string to search for. For example, '1600 Amphitheatre Parkway, Mountain View, CA' or just 'Mountain View'
      **/
-    addressCountry?: unknown;
+    query?: unknown;
+    /**
+     * Street address
+     * The street address. For example, 1600 Amphitheatre Pkwy.
+     **/
+    streetAddress?: unknown;
     /**
      * Locality
      * The locality in which the street address is, and which is in the region. For example, Mountain View.
@@ -16,15 +21,15 @@ export declare type AddressGeocodingGeocodeInput = {
      **/
     addressRegion?: unknown;
     /**
+     * Country
+     * The country. For example, USA. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
+     **/
+    addressCountry?: unknown;
+    /**
      * Postal code
      * The postal code. For example, 94043.
      **/
     postalCode?: unknown;
-    /**
-     * Street address
-     * The street address. For example, 1600 Amphitheatre Pkwy.
-     **/
-    streetAddress?: unknown;
 };
 export declare type AddressGeocodingGeocodeResult = {
     /**
@@ -57,25 +62,25 @@ export declare type AddressGeocodingReverseGeocodeResult = {
      **/
     addressCountry?: unknown;
     /**
-     * Locality
-     * The locality in which the street address is, and which is in the region. For example, Mountain View.
-     **/
-    addressLocality?: unknown;
-    /**
      * Region
      * The region in which the locality is, and which is in the country. For example, California or another appropriate first-level Administrative division
      **/
     addressRegion?: unknown;
     /**
-     * Postal code
-     * The postal code. For example, 94043.
+     * Locality
+     * The locality in which the street address is, and which is in the region. For example, Mountain View.
      **/
-    postalCode?: unknown;
+    addressLocality?: unknown;
     /**
      * Street address
      * The street address. For example, 1600 Amphitheatre Pkwy.
      **/
     streetAddress?: unknown;
+    /**
+     * Postal code
+     * The postal code. For example, 94043.
+     **/
+    postalCode?: unknown;
     /**
      * Formatted address
      * Address formatted as one string

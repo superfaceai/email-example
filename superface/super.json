@@ -2,7 +2,10 @@
   "profiles": {
     "communication/send-email": {
       "version": "1.1.0",
-      "priority": ["sendgrid", "mailgun"],
+      "priority": [
+        "sendgrid",
+        "mailgun"
+      ],
       "defaults": {
         "SendEmail": {
           "providerFailover": true
@@ -12,14 +15,14 @@
         "sendgrid": {
           "defaults": {
             "SendEmail": {
+              "input": {
+                "from": "$SENDGRID_FROM",
+                "domain": "$SENDGRID_DOMAIN"
+              },
               "retryPolicy": {
                 "kind": "circuit-breaker",
                 "maxContiguousRetries": 1,
                 "requestTimeout": 1500
-              },
-              "input": {
-                "from": "$SENDGRID_FROM",
-                "domain": "$SENDGRID_DOMAIN"
               }
             }
           }
@@ -27,15 +30,15 @@
         "mailgun": {
           "defaults": {
             "SendEmail": {
+              "input": {
+                "from": "$MAILGUN_FROM",
+                "domain": "$MAILGUN_DOMAIN"
+              },
               "retryPolicy": {
                 "kind": "circuit-breaker",
                 "maxContiguousRetries": 3,
                 "requestTimeout": 2000,
                 "backoff": "exponential"
-              },
-              "input": {
-                "from": "$MAILGUN_FROM",
-                "domain": "$MAILGUN_DOMAIN"
               }
             }
           }
@@ -63,11 +66,9 @@
       }
     },
     "address/geocoding": {
-      "version": "3.0.1",
+      "version": "3.1.0",
       "providers": {
-        "nominatim": {
-          "file": "./maps/geocode.nominatim.suma"
-        },
+        "nominatim": {},
         "google-apis": {
           "defaults": {
             "ReverseGeocode": {
@@ -119,7 +120,6 @@
       ]
     },
     "nominatim": {
-      "file": "./providers/nominatim.json",
       "security": []
     },
     "google-apis": {

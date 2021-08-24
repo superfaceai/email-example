@@ -10,7 +10,7 @@
     "sf:install": "superface install"
   },
   "dependencies": {
-    "@superfaceai/one-sdk": "^0.0.29",
+    "@superfaceai/one-sdk": "^0.0.30",
     "dotenv": "^10.0.0",
     "fastify": "^3.18.0",
     "fastify-formbody": "^5.0.0",
