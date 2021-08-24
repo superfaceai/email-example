@@ -1,0 +1,246 @@
+:root {
+  --color-bg: #434a53;
+  --color-text-main: #f9f9fb;
+  --color-text-secondary: #434a53;
+  --color-borders: #212632;
+  --color-buttons: #1ee2c7;
+  --color-black: black;
+  --color-error: red;
+  --color-failover: #fbd651;
+  --font-family: HK Grotesk;
+}
+
+/* Basic page style resets */
+* {
+  box-sizing: border-box;
+}
+[hidden] {
+  display: none !important;
+}
+
+/* Import fonts */
+@font-face {
+  font-family: HK Grotesk;
+  src: url("https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2FHKGrotesk-Regular.otf?v=1603136326027")
+    format("opentype");
+}
+@font-face {
+  font-family: HK Grotesk;
+  font-weight: bold;
+  src: url("https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2FHKGrotesk-Bold.otf?v=1603136323437")
+    format("opentype");
+}
+
+/* Our remix on glitch button */
+.btn--remix {
+  font-family: var(--font-family);
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  line-height: 1rem;
+  font-weight: 500;
+  height: 2.75rem;
+  align-items: center;
+  cursor: pointer;
+  background: #ffffff;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #000;
+  white-space: nowrap;
+  margin-left: auto;
+}
+.btn--remix img {
+  margin-right: 0.5rem;
+}
+.btn--remix:hover {
+  background-color: #d0fff1;
+}
+
+/* Superface styles */
+body {
+  background-color: var(--color-bg);
+  font-family: var(--font-family);
+  padding: 15px 40px;
+  font-size: 16px;
+  color: var(--color-text-main);
+}
+
+h1 {
+  font-size: 1.2em;
+}
+
+body > h1 {
+  margin-bottom: 0px;
+}
+
+h2:not(.failover-provider) {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+body > h3 {
+  margin-top: 0px;
+  font-weight: normal;
+}
+
+p {
+  font-size: 1rem;
+}
+
+a,
+a:visited {
+  color: #fff;
+}
+
+form {
+  margin: 2.3rem 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: 100%;
+  background: #ffffff;
+  border: 1px solid var(--color-borders);
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  max-width: 500px;
+}
+
+input[type="submit"] {
+  background-color: var(--color-buttons);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  margin: 10px 0;
+}
+
+label {
+  color: var(--color-text-main);
+  font-weight: bold;
+}
+
+.form-group {
+  margin: 20px 0;
+  border: none;
+  padding: 0;
+}
+
+.form-group label:not(:first-child) {
+  margin-top: 20px;
+  display: inline-block;
+}
+
+#options label,
+#simulate-failover label {
+  margin: 0;
+  font-weight: normal;
+}
+
+#user-repos-form,
+#address-form {
+  display: none;
+}
+
+fieldset[disabled="disabled"] {
+  display: none !important;
+}
+
+#info {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+#info > h3 {
+  margin-top: 0;
+}
+
+.failover-wrapper,
+.response {
+  width: intrinsic; /* Safari/WebKit uses a non-standard name */
+  width: -moz-max-content; /* Firefox/Gecko */
+  width: -webkit-max-content; /* Chrome */
+  width: max-content;
+  font-family: inherit;
+  font-size: 100%;
+  background: var(--color-text-main);
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  margin: 0 0 15px;
+}
+
+.failover-wrapper {
+  max-width: 1000px;
+  background: var(--color-failover);
+  color: var(--color-text-secondary);
+}
+
+.failover-chain {
+  padding: 5px;
+  margin-right: 25px;
+}
+
+.failover-wrapper h4,
+.response h4,
+.failover-wrapper p,
+.response p {
+  margin: 0;
+}
+
+.failover {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.response h4 {
+  color: var(--color-black);
+}
+
+.response h4,
+.response p {
+  margin: 0;
+}
+
+.response-error > .response-message {
+  color: var(--color-error);
+}
+.response-value > .response-message {
+  color: var(--color-black);
+}
+
+.log {
+  background-color: var(--color-text-main);
+  color: var(--color-text-secondary);
+  width: intrinsic; /* Safari/WebKit uses a non-standard name */
+  width: -moz-max-content; /* Firefox/Gecko */
+  width: -webkit-max-content; /* Chrome */
+  width: max-content;
+  max-width: 100%;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 30px;
+  overflow: hidden;
+}
+
+.log pre {
+  font-size: 0.9em;
+  white-space: pre-wrap;
+}

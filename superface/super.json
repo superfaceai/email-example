@@ -1,0 +1,142 @@
+{
+  "profiles": {
+    "communication/send-email": {
+      "version": "1.1.0",
+      "priority": [
+        "sendgrid",
+        "mailgun"
+      ],
+      "defaults": {
+        "SendEmail": {
+          "providerFailover": true
+        }
+      },
+      "providers": {
+        "sendgrid": {
+          "defaults": {
+            "SendEmail": {
+              "input": {
+                "from": "$SENDGRID_FROM",
+                "domain": "$SENDGRID_DOMAIN"
+              },
+              "retryPolicy": {
+                "kind": "circuit-breaker",
+                "maxContiguousRetries": 1,
+                "requestTimeout": 1500
+              }
+            }
+          }
+        },
+        "mailgun": {
+          "defaults": {
+            "SendEmail": {
+              "input": {
+                "from": "$MAILGUN_COMMUNICATION_FROM",
+                "domain": "$MAILGUN_COMMUNICATION_DOMAIN"
+              },
+              "retryPolicy": {
+                "kind": "circuit-breaker",
+                "maxContiguousRetries": 3,
+                "requestTimeout": 1000,
+                "backoff": "exponential"
+              }
+            }
+          }
+        }
+      }
+    },
+    "vcs/user-repos": {
+      "version": "1.0.1",
+      "providers": {
+        "github": {
+          "defaults": {
+            "UserRepos": {
+              "retryPolicy": "circuit-breaker"
+            }
+          }
+        },
+        "gitlab": {
+          "defaults": {
+            "UserRepos": {
+              "retryPolicy": "circuit-breaker"
+            }
+          }
+        },
+        "bitbucket": {}
+      }
+    },
+    "address/geocoding": {
+      "version": "3.1.0",
+      "providers": {
+        "nominatim": {},
+        "google-apis": {
+          "defaults": {
+            "ReverseGeocode": {
+              "retryPolicy": "circuit-breaker"
+            }
+          }
+        },
+        "opencage": {}
+      }
+    }
+  },
+  "providers": {
+    "mock": {
+      "security": []
+    },
+    "mailchimp": {
+      "security": []
+    },
+    "mailgun": {
+      "security": [
+        {
+          "id": "basic",
+          "username": "$MAILGUN_USERNAME",
+          "password": "$MAILGUN_PASSWORD"
+        }
+      ]
+    },
+    "sendgrid": {
+      "security": [
+        {
+          "id": "bearer_token",
+          "token": "$SENDGRID_TOKEN"
+        }
+      ]
+    },
+    "github": {
+      "security": []
+    },
+    "gitlab": {
+      "security": []
+    },
+    "bitbucket": {
+      "security": [
+        {
+          "id": "basic",
+          "username": "$BITBUCKET_USERNAME",
+          "password": "$BITBUCKET_PASSWORD"
+        }
+      ]
+    },
+    "nominatim": {
+      "security": []
+    },
+    "google-apis": {
+      "security": [
+        {
+          "id": "apikey",
+          "apikey": "$GOOGLE_MAPS_API_KEY"
+        }
+      ]
+    },
+    "opencage": {
+      "security": [
+        {
+          "id": "apikey",
+          "apikey": "$OPENCAGE_API_KEY"
+        }
+      ]
+    }
+  }
+}

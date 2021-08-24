@@ -1,0 +1,6 @@
+{
+  "glitch-help-instructions": "For a custom domain, change the 'url' parameter from 'glitch-default' to your domain _without_ a traling slash, like 'https://www.example.com'",
+  "title": "Hello Superface!",
+  "description": "A demo of application using https://superface.ai to autonomously connect to APIs",
+  "url": "https://superface.ai"
+}
